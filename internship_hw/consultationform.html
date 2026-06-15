@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consultation Form</title>
+    <link href="style.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <style>
+        body { background-color: #fff5f8; min-height: 100vh; }
+        .form-card { background: white; border-radius: 2rem; box-shadow: 0 20px 60px rgba(245,7,114,0.12); padding: 2.5rem; }
+        .form-label { font-weight: 600; color: #374151; }
+        .form-control:focus, .form-select:focus {
+            border-color: rgb(245,7,114);
+            box-shadow: 0 0 0 0.2rem rgba(245,7,114,0.2);
+        }
+        .btn-submit { background: rgb(245,7,114); color: white; border: none; border-radius: 0.8rem; padding: 0.8rem 2rem; font-weight: 600; font-size: 1rem; transition: background 0.2s; }
+        .btn-submit:hover { background: #c0005a; color: white; }
+        .field-error { border-color: #ef4444 !important; }
+        .error-msg { color: #ef4444; font-size: 0.8rem; margin-top: 0.25rem; display: none; }
+        .error-msg.visible { display: block; }
+        .step-indicator { display: flex; gap: 0.5rem; margin-bottom: 2rem; }
+        .step { flex: 1; height: 4px; border-radius: 2px; background: #e5e7eb; transition: background 0.3s; }
+        .step.done { background: rgb(245,7,114); }
+        #successMsg { display: none; }
+        .char-count { font-size: 0.75rem; color: #9ca3af; text-align: right; }
+        .topic-chip { cursor: pointer; user-select: none; }
+        .topic-chip input:checked + label { background: rgb(245,7,114) !important; color: white !important; border-color: rgb(245,7,114) !important; }
+    </style>
+</head>
+<body>
+
+<div class="container pt-4 pb-2">
+    <div class="d-flex justify-content-between align-items-center">
+        <a href="index.html" class="btn btn-sm btn-outline-dark rounded-pill px-3">← Back</a>
+        <h5 class="fw-bold m-0" style="color:rgb(245,7,114)">📋 Consultation</h5>
+        <div style="width:80px"></div>
+    </div>
+</div>
+
+<main class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-8 col-lg-6">
+
+            <!-- Form Card -->
+            <div class="form-card" id="formCard">
+                <div class="step-indicator">
+                    <div class="step done" id="step1"></div>
+                    <div class="step" id="step2"></div>
+                    <div class="step" id="step3"></div>
+                </div>
+
+                <h2 class="fw-bold text-dark mb-1">Book a Consultation</h2>
+                <p class="text-muted mb-4">Fill in your details and we'll get back to you within 24 hours.</p>
+
+                <!-- Name -->
+                <div class="mb-4">
+                    <label class="form-label" for="fullName">Full Name <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control rounded-3" id="fullName" placeholder="e.g. Tala Al-Khateeb">
+                    <div class="error-msg" id="nameError">Please enter your full name (at least 2 characters).</div>
+                </div>
+
+                <!-- Email -->
+                <div class="mb-4">
+                    <label class="form-label" for="email">Email Address <span class="text-danger">*</span></label>
+                    <input type="email" class="form-control rounded-3" id="email" placeholder="you@example.com">
+                    <div class="error-msg" id="emailError">Please enter a valid email address.</div>
+                </div>
+
+                <!-- Phone -->
+                <div class="mb-4">
+                    <label class="form-label" for="phone">Phone Number <span class="text-muted fw-normal">(optional)</span></label>
+                    <input type="tel" class="form-control rounded-3" id="phone" placeholder="+963 9XX XXX XXXX">
+                    <div class="error-msg" id="phoneError">Please enter a valid phone number.</div>
+                </div>
+
+                <!-- Topic -->
+                <div class="mb-4">
+                    <label class="form-label d-block">Consultation Topic <span class="text-danger">*</span></label>
+                    <div class="d-flex flex-wrap gap-2">
+                        <div class="topic-chip">
+                            <input type="radio" name="topic" id="t1" value="Web Development" class="d-none">
+                            <label for="t1" class="btn btn-outline-dark btn-sm rounded-pill px-3">💻 Web Dev</label>
+                        </div>
+                        <div class="topic-chip">
+                            <input type="radio" name="topic" id="t2" value="AI & Machine Learning" class="d-none">
+                            <label for="t2" class="btn btn-outline-dark btn-sm rounded-pill px-3">🤖 AI & ML</label>
+                        </div>
+                        <div class="topic-chip">
+                            <input type="radio" name="topic" id="t3" value="Backend Systems" class="d-none">
+                            <label for="t3" class="btn btn-outline-dark btn-sm rounded-pill px-3">⚙️ Backend</label>
+                        </div>
+                        <div class="topic-chip">
+                            <input type="radio" name="topic" id="t4" value="Career Guidance" class="d-none">
+                            <label for="t4" class="btn btn-outline-dark btn-sm rounded-pill px-3">🎯 Career</label>
+                        </div>
+                        <div class="topic-chip">
+                            <input type="radio" name="topic" id="t5" value="Other" class="d-none">
+                            <label for="t5" class="btn btn-outline-dark btn-sm rounded-pill px-3">📌 Other</label>
+                        </div>
+                    </div>
+                    <div class="error-msg" id="topicError">Please select a consultation topic.</div>
+                </div>
+
+                <!-- Message -->
+                <div class="mb-4">
+                    <label class="form-label" for="message">Your Message <span class="text-danger">*</span></label>
+                    <textarea class="form-control rounded-3" id="message" rows="4" placeholder="Describe what you'd like to discuss..." maxlength="500"></textarea>
+                    <div class="d-flex justify-content-between align-items-center mt-1">
+                        <div class="error-msg" id="msgError" style="display:none">Message must be at least 20 characters.</div>
+                        <div class="char-count ms-auto"><span id="charCount">0</span>/500</div>
+                    </div>
+                </div>
+
+                <!-- Privacy -->
+                <div class="mb-4 form-check">
+                    <input type="checkbox" class="form-check-input" id="privacy">
+                    <label class="form-check-label text-muted small" for="privacy">
+                        I agree to the <a href="#" style="color:rgb(245,7,114)">Privacy Policy</a> and consent to being contacted. <span class="text-danger">*</span>
+                    </label>
+                    <div class="error-msg" id="privacyError">You must agree to the privacy policy.</div>
+                </div>
+
+                <button class="btn-submit w-100" id="submitBtn">Send Request ✈️</button>
+            </div>
+
+            <!-- Success Message -->
+            <div class="form-card text-center" id="successMsg">
+                <div style="font-size:4rem">🎉</div>
+                <h2 class="fw-bold text-dark mt-3">Request Sent!</h2>
+                <p class="text-muted mt-2">Thank you, <strong id="successName"></strong>! We've received your consultation request and will contact you at <strong id="successEmail"></strong> within 24 hours.</p>
+                <div class="bg-light rounded-3 p-3 my-4 text-start">
+                    <small class="text-muted">Topic: <strong id="successTopic"></strong></small>
+                </div>
+                <button class="btn-submit px-5" id="resetBtn">Submit Another →</button>
+            </div>
+
+        </div>
+    </div>
+</main>
+
+<footer class="text-center py-4 text-muted small">
+    &copy; 2026 Tala Al-Khateeb — All inquiries answered within 24h
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+<script>
+    // --- Char counter ---
+    const messageEl = document.getElementById('message');
+    const charCount = document.getElementById('charCount');
+    messageEl.addEventListener('input', () => {
+        charCount.textContent = messageEl.value.length;
+        // Update step indicator based on filled fields
+        updateSteps();
+    });
+
+    // --- Step indicator ---
+    function updateSteps() {
+        const name = document.getElementById('fullName').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const msg = messageEl.value.trim();
+        document.getElementById('step1').classList.toggle('done', name.length >= 2);
+        document.getElementById('step2').classList.toggle('done', /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email));
+        document.getElementById('step3').classList.toggle('done', msg.length >= 20);
+    }
+    ['fullName','email'].forEach(id => {
+        document.getElementById(id).addEventListener('input', updateSteps);
+    });
+
+    // --- Validation helpers ---
+    function showError(fieldId, errorId, show) {
+        const field = document.getElementById(fieldId);
+        const err = document.getElementById(errorId);
+        if (show) { field?.classList.add('field-error'); err.classList.add('visible'); }
+        else { field?.classList.remove('field-error'); err.classList.remove('visible'); }
+    }
+
+    // --- Submit ---
+    document.getElementById('submitBtn').addEventListener('click', () => {
+        let valid = true;
+
+        const name = document.getElementById('fullName').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const phone = document.getElementById('phone').value.trim();
+        const topic = document.querySelector('input[name="topic"]:checked');
+        const msg = messageEl.value.trim();
+        const privacy = document.getElementById('privacy').checked;
+
+        // Name
+        const nameOk = name.length >= 2;
+        showError('fullName', 'nameError', !nameOk);
+        if (!nameOk) valid = false;
+
+        // Email
+        const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        showError('email', 'emailError', !emailOk);
+        if (!emailOk) valid = false;
+
+        // Phone (optional but must be valid if filled)
+        if (phone.length > 0) {
+            const phoneOk = /^[+\d\s\-()]{7,15}$/.test(phone);
+            showError('phone', 'phoneError', !phoneOk);
+            if (!phoneOk) valid = false;
+        } else {
+            showError('phone', 'phoneError', false);
+        }
+
+        // Topic
+        const topicErr = document.getElementById('topicError');
+        if (!topic) { topicErr.classList.add('visible'); valid = false; }
+        else topicErr.classList.remove('visible');
+
+        // Message
+        const msgOk = msg.length >= 20;
+        const msgErr = document.getElementById('msgError');
+        if (!msgOk) { messageEl.classList.add('field-error'); msgErr.style.display = 'block'; valid = false; }
+        else { messageEl.classList.remove('field-error'); msgErr.style.display = 'none'; }
+
+        // Privacy
+        const privErr = document.getElementById('privacyError');
+        if (!privacy) { privErr.classList.add('visible'); valid = false; }
+        else privErr.classList.remove('visible');
+
+        if (!valid) return;
+
+        // Show success
+        document.getElementById('successName').textContent = name;
+        document.getElementById('successEmail').textContent = email;
+        document.getElementById('successTopic').textContent = topic.value;
+        document.getElementById('formCard').style.display = 'none';
+        document.getElementById('successMsg').style.display = 'block';
+    });
+
+    // --- Reset ---
+    document.getElementById('resetBtn').addEventListener('click', () => {
+        document.getElementById('fullName').value = '';
+        document.getElementById('email').value = '';
+        document.getElementById('phone').value = '';
+        document.querySelectorAll('input[name="topic"]').forEach(r => r.checked = false);
+        messageEl.value = '';
+        document.getElementById('privacy').checked = false;
+        charCount.textContent = '0';
+        document.querySelectorAll('.field-error').forEach(el => el.classList.remove('field-error'));
+        document.querySelectorAll('.error-msg').forEach(el => { el.classList.remove('visible'); el.style.display = ''; });
+        ['step1','step2','step3'].forEach((id,i) => {
+            document.getElementById(id).classList.toggle('done', i === 0);
+        });
+        document.getElementById('formCard').style.display = 'block';
+        document.getElementById('successMsg').style.display = 'none';
+    });
+</script>
+</body>
+</html>

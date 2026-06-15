@@ -1,0 +1,81 @@
+body{
+    background-color: pink !important;
+}
+.rounded-circle{
+    width: 150px !important; 
+    height: 150px !important; object-fit: cover !important;
+    border: 3px solid rgb(245, 7, 114) !important;
+    border-radius: 50% !important;
+    
+}
+h2 , h1{
+    color:rgb(245, 7, 114) !important;
+    text-align: center !important;
+}
+
+.btn{
+    font-size: large !important;
+}
+
+.btn:hover {
+    color: pink !important;
+    background-color:rgb(245, 7, 114) !important;}
+.icon-link{--bs-icon-link-transform: translate3d(0, -.2rem, 0) !important; color: rgb(245, 7, 114) !important;}
+
+body.night-mode .col-lg-4 {
+    background-color: #1e293b !important; 
+}
+
+body.night-mode .col-lg-8 {
+    background-color: #0f172a !important; 
+}
+
+body.night-mode h1, 
+body.night-mode h2, 
+body.night-mode p {
+    color: #ffffff !important;
+}
+
+body.night-mode .text-muted,
+body.night-mode p.text-muted {
+    color: #cbd5e1 !important; 
+}
+
+body.night-mode .card {
+    background-color: #334155 !important;
+    border: 1px solid #475569 !important;
+    color: #ffffff !important;
+}
+
+body.night-mode .card .text-muted {
+    color: #94a3b8 !important;
+}
+
+body.night-mode .btn-outline-dark {
+    color: #f472b6 !important;
+    border-color: #f472b6 !important;
+}
+
+body.night-mode .btn-outline-dark:hover {
+    background-color: #f472b6 !important;
+    color: #0f172a !important;
+}
+
+body.night-mode .icon-link {
+    color: #f472b6 !important;
+}
+body.night-mode .container-fluid > .row > .col-lg-4 > div:first-child,
+body.night-mode div[class*="text-end"] {
+    background-color: transparent !important;
+}
+
+body.night-mode #themeToggle {
+    color: #0f172a !important; 
+    background-color: #f59e0b !important; 
+    border-color: #d97706 !important;
+}
+
+body.night-mode #themeToggle:hover {
+    background-color: #d97706 !important;
+    color: #ffffff !important;
+}

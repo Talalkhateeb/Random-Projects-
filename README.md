@@ -154,7 +154,7 @@ A multi-field booking form with real-time validation.
 
 ## 🌐 Live Demo
 
-🔗 [View on GitHub Pages](#) _(add your link here after deploying)_
+🔗 [View on GitHub Pages](#) _(https://talalkhateeb.github.io/Random-Projects-/)_
 
 ---
 
@@ -162,4 +162,4 @@ A multi-field booking form with real-time validation.
 
 **Deadline:** One week from assignment date
 
-**Submitted by:** Tala Al-Khateeb — June 2026
+**Submitted by:** Tala Al-Khateeb — 15 June 2026
